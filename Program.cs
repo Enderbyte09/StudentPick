@@ -31,7 +31,7 @@ namespace StudentPick
         {
             return String.Equals(fulldataraw, aad);
         }
-        public static void LoadData()
+        public static string LoadData()
         {
             if (!File.Exists(datafileloc))
             {
@@ -40,17 +40,20 @@ namespace StudentPick
             {
                 fulldataraw = File.ReadAllText(datafileloc);
             }
-            if (AppDataIsOld(fulldataraw) || fulldataraw.Equals(' '))
+            if (AppDataIsOld(fulldataraw) || fulldataraw.Equals(""))
             {
-                if (!fulldataraw.Equals(' '))
+                if (!fulldataraw.Equals(""))
                 {
 
                     MessageBox.Show("StudentPick has changed to a new App Data format. After you press OK, your data will be migrated to this new format", "Appdata upgrade", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                } else
+                {
+                    MessageBox.Show("Hello! Welcome to StudentPick. After you press OK, you will be asked to choose a class name. After you answer that initial prompt, you can add more classes and students at your discretion", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 OldAppdataUpgrade o = new OldAppdataUpgrade();
-                if (fulldataraw.Equals(' '))
+                if (fulldataraw.Equals(""))
                 {
-                    o.Name = "Set a class name";
+                    o.Text = "Set a class name";
                 }
                 DialogResult d = o.ShowDialog();
                 string nname = o.name;
@@ -69,6 +72,7 @@ namespace StudentPick
                 fulldataraw = "";
                 //Write with new data
                 SaveData();
+                return nname;
 
             }
             else
@@ -82,6 +86,7 @@ namespace StudentPick
                     allstudents.Add(Student.FromDataString(line));
                 }
             }
+            return "";
         }
         public static void SaveData()
         {

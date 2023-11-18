@@ -66,7 +66,8 @@ namespace StudentPick
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            runtime.LoadData();
+            string iio = runtime.LoadData();
+            
             listBox1.Items.Clear();
 
             this.FormClosing += Form1_Closing;
@@ -79,6 +80,10 @@ namespace StudentPick
 
             //Now populate class list
             comboBox1.Items.Clear();
+            if (iio.Length > 0)
+            {
+                comboBox1.Items.Add(iio);
+            }
             foreach (Student s in runtime.allstudents)
             {
                 if (!comboBox1.Items.Contains(s.ClassName))

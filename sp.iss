@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "StudentPick"
-#define MyAppVersion "2.1"
+#define MyAppVersion "3.0"
 #define MyAppPublisher "Enderbyte Program"
 #define MyAppURL "https://enderbyteprograms.weebly.com"
 #define MyAppExeName "StudentPick.exe"
@@ -23,7 +23,7 @@ DisableProgramGroupPage=yes
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 OutputDir=C:\Users\jorda\source\repos\StudentPick
-OutputBaseFilename=studentpick-setup-v2.1-valette
+OutputBaseFilename=studentpick-setup-v3
 Compression=lzma
 SolidCompression=yes
 SetupIconFile = C:\Users\jorda\source\repos\StudentPick\icon.ico
@@ -38,7 +38,6 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "C:\Users\jorda\source\repos\StudentPick\bin\Debug\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\jorda\source\repos\StudentPick\data.txt"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

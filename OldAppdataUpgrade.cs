@@ -16,7 +16,11 @@ namespace StudentPick
             if (name.Contains(";"))
             {
                 MessageBox.Show("Names may not contain semicolons.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            } else
+            } else if (name.Replace(" ","").Equals(""))
+            {
+                MessageBox.Show("Names may not be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
             {
                 this.Close();
             }
