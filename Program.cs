@@ -147,7 +147,13 @@ namespace StudentPick
             string[] split = s.Split(';');
             Student z = new Student(split[0]);
             z.ishidden = runtime.IntToBool(int.Parse(split[1]));
-            z.ClassName = split[2];
+            try
+            {
+                z.ClassName = split[2];
+            } catch
+            {
+                //Do absolutely nothing
+            }
             return z;
         }
     }

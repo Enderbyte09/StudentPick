@@ -88,6 +88,7 @@ namespace StudentPick
             }
             comboBox1.SelectedIndex = 0;
             ActiveClass = comboBox1.SelectedItem.ToString();
+            listBox1.Items.Clear();
             updateslist();
         }
 
@@ -139,6 +140,10 @@ namespace StudentPick
             foreach (Student s in runtime.allstudents)
             {
                 s.ishidden = false;
+                if (s.ClassName != ActiveClass)
+                {
+                    continue;
+                }
                 listBox1.Items.Add(s.Name);
             }
         }
@@ -151,7 +156,9 @@ namespace StudentPick
             {
                 string[] dn = f2.name.Split(',');
                 foreach (string n in dn) {
-                    runtime.allstudents.Add(Student.FromDataString(n+";0"));
+                    Student ns = Student.FromDataString(n + $";0");
+                    ns.ClassName = ActiveClass;
+                    runtime.allstudents.Add(ns);
                 }
                 //MessageBox.Show("Student added", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 listBox1.Items.Clear();
@@ -215,8 +222,60 @@ namespace StudentPick
         private void button3_Click(object sender, EventArgs e)
         {
             ClassManager c = new ClassManager();
-            c.ShowDialog();
+            List<string> nnn = new List<string>();
+            Student[] stee = new Student[runtime.allstudents.Count];
             
+            runtime.allstudents.CopyTo(stee);
+            List < Student > slist = stee.ToList();
+            foreach (string sssssss in comboBox1.Items)
+            {
+                nnn.Add(sssssss);
+            }
+            c.PopulateList(nnn.ToArray());
+            c.ShowDialog();
+            foreach (string s in c.toadd)
+            {
+                comboBox1.Items.Add(s);
+            }
+            List<Student> namestodelete = new List<Student>();
+            foreach (KeyValuePair<string,string> entry in c.toModify)
+            {
+                comboBox1.Items.Remove(entry.Key);
+                comboBox1.Items.Add(entry.Value);
+                foreach (Student st in slist)
+                {
+                    if (st.ClassName.Equals(entry.Key))
+                    {
+                        st.ClassName = entry.Value;
+                    }
+                }
+            }
+            foreach (string s2 in c.todelete)
+            {
+                comboBox1.Items.Remove(s2);
+                foreach (Student st in slist)
+                {
+                    if (st.ClassName.Equals(s2))
+                    {
+                        namestodelete.Add(st);
+                    }
+                }
+            }
+            foreach (Student td in namestodelete)
+            {
+                slist.Remove(td);
+            }
+            runtime.allstudents = slist;
+            listBox1.Items.Clear();
+            updateslist();
+            
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ActiveClass = comboBox1.SelectedItem.ToString();
+            listBox1.Items.Clear();
+            updateslist();
         }
     }
 }
