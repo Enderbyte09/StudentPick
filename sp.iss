@@ -22,7 +22,7 @@ DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
-OutputDir=C:\Users\jorda\source\repos\StudentPick
+OutputDir=C:\Users\jorda\source\repos\StudentPick\bin\setup
 OutputBaseFilename=studentpick-setup-v3
 Compression=lzma
 SolidCompression=yes
@@ -38,6 +38,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "C:\Users\jorda\source\repos\StudentPick\bin\Debug\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\jorda\source\repos\StudentPick\documentation.html"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

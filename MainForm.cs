@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -206,22 +207,10 @@ namespace StudentPick
         }
         private void button9_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("StudentPick by Enderbyte Programs\n\nHELP MENU\n" +
-                "\n" +
-                "All data for this program is stored in data.txt which must exist in the same directory as the program\n" +
-                "BUTTONS:\n" +
-                "Generate - Choose a random student from the list and show it in a message box\n" +
-                "About - Show some info about this software\n" +
-                "Help - Display this help menu\n" +
-                "Quit - Quit the software\n" +
-                "Reset session - Reset the list of names to its full capacity\n" +
-                "\n" +
-                "Add - Add one or more students to the list\n" +
-                "Remove - Remove selected students from the list\n" +
-                "Save - Commit changes in the student list to data.txt\n\n" +
-                "Allow only one answer per student - Selected students will be temporarily removed from the list. Press Reset Session to return the names\n" +
-                "Pop out student name - Student's name will be shown as a message box.\n" +
-                "Colourful Names - Generated names will be set to a random colour. Disable if you are having trouble reading.");
+            Process p = new Process();
+            p.StartInfo.FileName = "documentation.html";
+            p.StartInfo.UseShellExecute = true;
+            p.Start();
         }
 
         private void button3_Click(object sender, EventArgs e)
